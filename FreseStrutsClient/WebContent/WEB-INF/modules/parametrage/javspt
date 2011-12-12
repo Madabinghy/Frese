@@ -1,0 +1,44 @@
+<script type="text/javascript">
+		var nbInput = 0; //On utilise une variable globale pour éviter d'avoir des inputs avec le même nom...
+		function ajouterChamps(){
+		var nbChampsAjout = 1;//document.getElementById('nbChamps').value;
+		var DivToAdd = document.getElementById('dynamicAdd');
+		if(nbChampsAjout <= 0){alert('Veuillez indiquer le nombre de champs à ajouter');}
+		else{
+			for(var i = 0 ; i < nbChampsAjout; i++){
+				nbInput++;
+				tempInput = document.createElement('input');
+				tempInput.setAttribute("type","text");
+				tempInput.setAttribute("name","inputn_"+nbInput);
+				DivToAdd.appendChild(tempInput);
+			}
+		}
+ 
+		document.getElementById('inner').value = "CONTENU DE LA DIV APRES AJOUT<br />############################################<br />" + document.getElementById('divTest').innerHTML;
+ 
+	}
+</script>
+
+
+<script>
+function create_champ(i) {
+
+var i2 = i + 1;
+
+document.getElementById('dynamicAdd_'+i).innerHTML = '<input type="file" name="fichier_'+i+'"></span>';
+document.getElementById('dynamicAdd_'+i).innerHTML += '<br /><span id="dynamicAdd_'+i2+'"><s:form><s:submit id="addAttribute" value="Ajouter Attribut"/><sx:bind sources="addAttribute" events="onclick" targets="dynamicAdd" executeScripts="create_champ('+i2+')"/></s:form>';
+}
+</script>
+
+
+<script>
+function create_champ(i) {
+
+var i2 = i + 1;
+
+document.getElementById('leschamps_'+i).innerHTML = 'nom attribut : <input type="text" name="champ_'+i+'"> type:<s:combobox list="lesTypesAttribut" name="type"></s:combobox>';
+document.getElementById('leschamps_'+i).innerHTML += (i <= 10) ? '<br /><span id="leschamps_'+i2+'"><a href="javascript:create_champ('+i2+')">Ajouter un champs</a></span>' : '';
+
+
+}
+</script>
